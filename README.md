@@ -1,4 +1,7 @@
 # parameterz-core
+
+![Alt text](./images/ParameterZ.svg)
+
 A spring library to create parameter descriptions in a standardized way.
 
 ## Functionality
