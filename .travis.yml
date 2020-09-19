@@ -1,0 +1,29 @@
+language: java
+if: tag IS blank
+cache:
+  directories:
+    - $HOME/.m2
+
+before_install:
+  - echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
+  - echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust
+
+install:
+  - mvn clean deploy --settings .maven.xml -DskipTests=true -B -U -Prelease
+
+before_deploy:
+  - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+  - export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')
+  - git config --local user.name "Tree4Free"
+  - git config --local user.email "roli123@me.com"
+  - git tag $project_version
+deploy:
+  provider: releases
+  api_key:
+    secure: PGUAiIcPA17L4UiMCNTm3OHVuH3u4pxp5h9Gj/OvKF8YDv1RhJVJqmmmnH+WUpBFAQR3Lk+4cOCmScF2mQ48x4eDt/Lx7rG357eDBW+qoFx/mtapukAdCQPRcYeUq3zrU/HWwBpFUwepbtuOpY4fC52SLdQ2QU4zuMG7MH5w9nb5P3Ak+5yAeNqDQCYFUFFDP01sv/c8I8EdPumTAuHr/rJAcRihot4D40zuxcFdBJ18b0E4ykQyQYBBpIZvs34tq36vr+o2BKgLxS3iSKYRgfuxe5NusUeHqJ33mqREs+vRYkFvVC/JErV0hT4/XsRIcTGJcD1SNztpP6c4KD9nPSb9DH7MyowyC8HWM+lYDEedNqRSqvX+RoF09L5d5tY1rhRRiD9gyreLvWK2Ij9j4JkcOSmSXHAPyiKTMLpyjn1OEz53zkwrh+4NGqV+vUzRvjkCWZRofrjo9jmHp03LdaVChQPzHrBqq4jrzHm+9nxWPZzhJyunQip7TaUEMptCLnWe2q9lKMw5ElcY2IuSMUvX40HKLzEZ5VbxmfSFfbuB7d9JwPR63LokdPL7n72+jTEtFjKjA64UXpmb8FIT2HfNqI1Vy2AU2kAqoNRJom66CdErmgN8QUcYSl02QjBmCJWirz3oFlYexsX5eAlGHzVJTivjKVNL+HJhq8wOYqc=
+  file:
+    - target/parameterz-core-$project_version.jar
+  on:
+    repo: Tree4Free/parameterz-core
+    branch: master
+  skip_cleanup: true

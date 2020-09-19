@@ -9,19 +9,19 @@ abstract class DependsOn(val type: Type) {
 
     companion object {
         fun not(parameter: String, value: String): DependsOn {
-            return NotDependsOn(parameter, value)
+            return DependsOn.NotDependsOn(parameter, value)
         }
 
         fun just(parameter: String, value: String): DependsOn {
-            return JustDependsOn(parameter, value)
+            return DependsOn.JustDependsOn(parameter, value)
         }
 
         fun and(vararg deps: DependsOn): DependsOn {
-            return AndDependsOn(deps.toList())
+            return DependsOn.AndDependsOn(deps.toList())
         }
 
         fun or(vararg deps: DependsOn): DependsOn {
-            return OrDependsOn(deps.toList())
+            return DependsOn.OrDependsOn(deps.toList())
         }
     }
 
