@@ -2,6 +2,9 @@ language: java
 before_deploy:
   - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
   - export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')
+  - git config --local user.name "YOUR GIT USER NAME"
+  - git config --local user.email "YOUR GIT USER EMAIL"
+  - git tag $project_version
 deploy:
   provider: releases
   api_key:
@@ -10,6 +13,7 @@ deploy:
     - target/parameterz-core-$project_version.jar
   on:
     repo: Tree4Free/parameterz-core
-#    tags: true
+    branch: feature/travis-release
+  #    tags: true
   skip_cleanup: 'true'
   name: $project_version
