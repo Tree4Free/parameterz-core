@@ -10,5 +10,6 @@ deploy:
     - target/parameterz-core-$project_version.jar
   on:
     repo: Tree4Free/parameterz-core
-    tags: true
+#    tags: true
   skip_cleanup: 'true'
+  name: $project_version
