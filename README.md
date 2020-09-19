@@ -1,6 +1,8 @@
 # parameterz-core
 
-![Alt text](./images/ParameterZ.svg)
+![ParameterZ Logo](./images/ParameterZ.svg)
+
+[![Build Status](https://travis-ci.com/Tree4Free/parameterz-core.svg?branch=master)](https://travis-ci.com/Tree4Free/parameterz-core)
 
 A spring library to create parameter descriptions in a standardized way.
 
