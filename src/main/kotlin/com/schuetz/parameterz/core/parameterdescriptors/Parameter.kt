@@ -10,7 +10,7 @@ open class Parameter(
     val type: ParameterType,
     val validation: Collection<Validation>,
     val defaultValue: String,
-    val dependsOn: _root_ide_package_.com.schuetz.parameterz.core.parameterdescriptors.DependsOn?,
+    val dependsOn: DependsOn?,
     val required: Boolean,
     val additionalProperties: Map<String, Any>
 )
