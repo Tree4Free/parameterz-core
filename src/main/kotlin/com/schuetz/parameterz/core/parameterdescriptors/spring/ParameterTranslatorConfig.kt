@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration
 class ParameterTranslatorConfig {
 
     @Bean
-    fun createParameterTranslatorService(languageSource: TranslationLanguageSource, translationProvider: TranslationProvider): ParameterTranslatorService {
+    fun createParameterTranslatorService(languageSource: TranslationLanguageSource, translationProvider: TranslationProvider<Nothing>): ParameterTranslatorService<Nothing> {
         return ParameterTranslatorService(
             translationProvider = translationProvider,
             translationLanguageSource = languageSource

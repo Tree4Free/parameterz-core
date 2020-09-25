@@ -11,7 +11,7 @@ import org.springframework.core.GenericTypeResolver
 class ParameterBuilderConfig {
 
     @Bean
-    fun createParameterBuilderService(translatorService: ParameterTranslatorService?, builders: Collection<ParameterBuilder<*>>): ParameterBuilderService {
+    fun createParameterBuilderService(translatorService: ParameterTranslatorService<*>?, builders: Collection<ParameterBuilder<*>>): ParameterBuilderService {
         return ParameterBuilderService(
             translatorService = translatorService,
             builders = builders.associateBy { GenericTypeResolver.resolveTypeArgument(it::class.java, ParameterBuilder::class.java)!! }

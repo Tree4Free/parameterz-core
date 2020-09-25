@@ -4,7 +4,7 @@ import com.schuetz.parameterz.core.parameterdescriptors.foundation.exceptions.No
 import com.schuetz.parameterz.core.parameterdescriptors.translation.ParameterTranslatorService
 
 class ParameterBuilderService(
-    private val translatorService: ParameterTranslatorService?,
+    private val translatorService: ParameterTranslatorService<*>?,
     private val builders: Map<Class<*>, ParameterBuilder<*>>
 ) {
 

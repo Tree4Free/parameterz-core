@@ -1,11 +1,12 @@
 package com.schuetz.parameterz.core.parameterdescriptors
 
+import com.schuetz.parameterz.core.parameterdescriptors.translation.TranslationKey
 import com.schuetz.parameterz.core.parameterdescriptors.type.ParameterType
 import com.schuetz.parameterz.core.parameterdescriptors.validation.Validation
 
 open class Parameter(
     val name: String,
-    val translationKey: String,
+    val translationKey: TranslationKey<*>?,
     val order: Int,
     val type: ParameterType,
     val validation: Collection<Validation>,
