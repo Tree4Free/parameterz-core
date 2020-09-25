@@ -8,7 +8,7 @@ class ParameterBuilderService(
     private val builders: Map<Class<*>, ParameterBuilder<*>>
 ) {
 
-    fun constructParameters(obj: Any): Collection<Parameter> {
+    fun constructParameters(obj: Any): List<Parameter> {
         val type = obj::class.java
         val builder = builders.getOrElse(type) { throw NoSuitableBuilderException(type) }
 
@@ -18,7 +18,7 @@ class ParameterBuilderService(
             return parameters.map(::translate)
         }
 
-        return parameters
+        return parameters.sortedWith(builder.provideComparator())
     }
 
     private fun translate(param: Parameter): Parameter {
