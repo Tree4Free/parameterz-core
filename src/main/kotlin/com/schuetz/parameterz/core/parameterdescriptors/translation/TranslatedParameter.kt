@@ -7,9 +7,9 @@ import com.schuetz.parameterz.core.parameterdescriptors.validation.Validation
 
 class TranslatedParameter(
     name: String,
-    translationKey: String,
+    translationKey: TranslationKey<*>,
     val displayName: String,
-    val description: String,
+    val description: String?,
     order: Int,
     type: ParameterType,
     validation: Collection<Validation>,
