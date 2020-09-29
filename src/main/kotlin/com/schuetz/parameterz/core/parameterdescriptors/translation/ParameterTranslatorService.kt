@@ -19,6 +19,7 @@ class ParameterTranslatorService<T : TranslationKey<T>>(
             log.warn("No language provided. Skipping translation.")
             return parameter
         }
+
         if (parameter.translationKey == null) {
             log.warn("No translation key provided. Skipping translation.")
             return parameter
