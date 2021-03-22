@@ -25,7 +25,11 @@ object ParameterTypes {
         override val type: String = "NUMBER"
     }
 
-    class ENUM(override val multiple: Boolean, val enumType: Class<out Enum<*>>) : ListableParameterType, PredefinedParameterType {
+    class ENUM(
+        override val multiple: Boolean,
+        val enumType: Class<out Enum<*>>,
+        override val translate: Boolean
+    ) : ListableParameterType, PredefinedParameterType {
         override val type: String = "ENUM"
 
         override val values = enumType.enumConstants.map { it.name }

@@ -35,7 +35,11 @@ class ParameterTranslatorService<T : TranslationKey<T>>(
             required = parameter.required,
             description = translationProvider.getTranslation(parameter.translationKey.description() as T, lang),
             displayName = translationProvider.getTranslation(parameter.translationKey.name() as T, lang),
-            type = if (parameter.type is PredefinedParameterType) translateParameterType(parameter.translationKey, parameter.type, lang) else parameter.type,
+            type = if (parameter.type is PredefinedParameterType && parameter.type.translate) translateParameterType(
+                parameter.translationKey,
+                parameter.type,
+                lang
+            ) else parameter.type,
             additionalProperties = parameter.additionalProperties
         )
     }
